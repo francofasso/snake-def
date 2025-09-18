@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="snake.basic.WrapAroundTests" tests="4" skipped="0" failures="0" errors="0" timestamp="2025-09-18T13:23:11" hostname="DESKTOP-4NRB2QG" time="0.021">
+  <properties/>
+  <testcase name="testWrapAroundEast" classname="snake.basic.WrapAroundTests" time="0.005"/>
+  <testcase name="testWrapAroundSouth" classname="snake.basic.WrapAroundTests" time="0.004"/>
+  <testcase name="testWrapAroundNorth" classname="snake.basic.WrapAroundTests" time="0.005"/>
+  <testcase name="testWrapAroundWest" classname="snake.basic.WrapAroundTests" time="0.005"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
