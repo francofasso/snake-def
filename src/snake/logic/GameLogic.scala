@@ -3,10 +3,10 @@ package snake.logic
 import engine.random.RandomGenerator
 import snake.logic.GameLogic._
 
-/** To implement Snake, complete the ``TODOs`` below.
+/** To implement Snake, complete the `TODOs` below.
  *
  * If you need additional files,
- * please also put them in the ``snake`` package.
+ * please also put them in the `snake` package.
  */
 class GameLogic(val random: RandomGenerator,
                 val gridDims: Dimensions) {
@@ -15,9 +15,12 @@ class GameLogic(val random: RandomGenerator,
   private var snakeBody: List[Point] = List(Point(2, 0), Point(1, 0), Point(0, 0))
   private var currentDirection: Direction = East()
   private var directionQueue: List[Direction] = List()
-  private var applePosition: Point = gridDims.placeApple(snakeBody, random)
+  private var applePosition: Point = _
   private var growthRemaining: Int = 0
   private var gameOverFlag: Boolean = false
+
+  // Initialize apple position
+  applePosition = generateApplePosition()
 
   def getCellType(p: Point): CellType = {
     if (snakeBody.nonEmpty && snakeBody.head == p) {
@@ -34,14 +37,14 @@ class GameLogic(val random: RandomGenerator,
   }
 
   def step(): Unit = {
-    // Prova 1312
+    // Prova AAAA
 
     if (gameOverFlag) return
 
     // Process direction queue to find the last valid direction
     var newDirection = currentDirection
     for (dir <- directionQueue) {
-      if (dir.isValidFrom(newDirection)) {
+      if (dir != newDirection.opposite) {
         newDirection = dir
       }
     }
@@ -50,7 +53,7 @@ class GameLogic(val random: RandomGenerator,
 
     // Calculate new head position
     val currentHead = snakeBody.head
-    val newHead = currentHead.move(currentDirection, gridDims)
+    val newHead = movePoint(currentHead, currentDirection)
 
     // Check for collision with body
     // Special case: if we're not growing and the new head position is the current tail,
@@ -85,8 +88,8 @@ class GameLogic(val random: RandomGenerator,
 
     // If apple was eaten, generate new apple position and start growing
     if (ateApple) {
-      growthRemaining += Apple().growthValue
-      applePosition = gridDims.placeApple(snakeBody, random)
+      growthRemaining += 3
+      applePosition = generateApplePosition()
     }
   }
 
@@ -100,6 +103,28 @@ class GameLogic(val random: RandomGenerator,
 
   def setReverse(r: Boolean): Unit = {
     // Assignment 2.1: Do nothing for reverse mode
+  }
+
+  private def movePoint(point: Point, direction: Direction): Point = {
+    direction match {
+      case East() => Point((point.x + 1) % gridDims.width, point.y)
+      case West() => Point((point.x - 1 + gridDims.width) % gridDims.width, point.y)
+      case North() => Point(point.x, (point.y - 1 + gridDims.height) % gridDims.height)
+      case South() => Point(point.x, (point.y + 1) % gridDims.height)
+    }
+  }
+
+  private def generateApplePosition(): Point = {
+    val allPoints = gridDims.allPointsInside
+    val freePoints = allPoints.filterNot(p => snakeBody.contains(p))
+
+    if (freePoints.isEmpty) {
+      // No free space - return null to indicate no apple can be placed
+      null
+    } else {
+      val index = random.randomInt(freePoints.length)
+      freePoints(index)
+    }
   }
 }
 

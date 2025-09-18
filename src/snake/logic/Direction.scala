@@ -16,7 +16,6 @@ package snake.logic
  */
 sealed abstract class Direction {
   def opposite : Direction
-  def isValidFrom(current: Direction): Boolean = this != current.opposite
 }
 
 case class East()   extends Direction  { def opposite : West   = West()  }

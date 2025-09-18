@@ -11,6 +11,4 @@ case class SnakeBody(distanceToHead: Float = 0f) extends CellType
 
 case class Empty() extends CellType
 
-case class Apple() extends CellType {
-  def growthValue: Int = 3
-}
+case class Apple() extends CellType
