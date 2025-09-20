@@ -37,31 +37,26 @@ class GameLogic(val random: RandomGenerator,
   }
 
   def step(): Unit = {
-    // Prova AAAA
-
     if (gameOverFlag) return
 
-    // Process direction queue to find the last valid direction
+    // Find the last valid direction in the queue
     var newDirection = currentDirection
     for (dir <- directionQueue) {
       if (dir != newDirection.opposite) {
         newDirection = dir
       }
     }
-    directionQueue = List()
+    directionQueue = List()  // Empties the queue
     currentDirection = newDirection
 
-    // Calculate new head position
     val currentHead = snakeBody.head
     val newHead = movePoint(currentHead, currentDirection)
 
-    // Check for collision with body
-    // Special case: if we're not growing and the new head position is the current tail,
-    // this is OK (the tail will move away)
     val willCollide = if (growthRemaining > 0) {
+      // If it grows, check all body
       snakeBody.contains(newHead)
     } else {
-      // Check collision with all body parts except the tail
+      // If it doesn't grow, don't check the tail
       snakeBody.init.contains(newHead)
     }
 
@@ -70,7 +65,7 @@ class GameLogic(val random: RandomGenerator,
       return
     }
 
-    // Check if apple was eaten BEFORE moving
+    // Check if apple was eaten, but before moving
     val ateApple = newHead == applePosition
 
     // Move snake - add new head
