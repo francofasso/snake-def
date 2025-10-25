@@ -16,13 +16,54 @@ case class GameState(
   def step(newDirection: Direction, random: RandomGenerator, gridDims: Dimensions): GameState = {
     if (gameOver) return this
 
+<<<<<<< HEAD
+=======
+  // Initialize apple position
+  applePosition = generateApplePosition()
+
+  def getCellType(p: Point): CellType = {
+    if (snakeBody.nonEmpty && snakeBody.head == p) {
+      SnakeHead(currentDirection)
+    } else if (snakeBody.contains(p)) {
+      val index = snakeBody.indexOf(p)
+      val distance = if (snakeBody.length <= 1) 0f else index.toFloat / (snakeBody.length - 1).toFloat
+      SnakeBody(distance)
+    } else if (p == applePosition && applePosition != null) {
+      Apple()
+    } else {
+      Empty()
+    }
+  }
+
+  def step(): Unit = {
+    if (gameOverFlag) return
+
+    // Find the last valid direction in the queue
+    var newDirection = currentDirection
+    for (dir <- directionQueue) {
+      if (dir != newDirection.opposite) {
+        newDirection = dir
+      }
+    }
+    directionQueue = List()  // Empties the queue
+    currentDirection = newDirection
+
+>>>>>>> 87c33a93297436c8d0c4ec5d2fcf8c70524baa4c
     val currentHead = snakeBody.head
     val newHead = movePoint(currentHead, newDirection, gridDims)
 
+<<<<<<< HEAD
     // Check collision - if growing, check all body; if not growing, exclude tail
+=======
+>>>>>>> 87c33a93297436c8d0c4ec5d2fcf8c70524baa4c
     val willCollide = if (growthRemaining > 0) {
+      // If it grows, check all body
       snakeBody.contains(newHead)
     } else {
+<<<<<<< HEAD
+=======
+      // If it doesn't grow, don't check the tail
+>>>>>>> 87c33a93297436c8d0c4ec5d2fcf8c70524baa4c
       snakeBody.init.contains(newHead)
     }
 
@@ -30,7 +71,11 @@ case class GameState(
       return this.copy(gameOver = true, direction = newDirection)
     }
 
+<<<<<<< HEAD
     // Check if apple was eaten
+=======
+    // Check if apple was eaten, but before moving
+>>>>>>> 87c33a93297436c8d0c4ec5d2fcf8c70524baa4c
     val ateApple = newHead == applePosition
 
     // Move snake - add new head
