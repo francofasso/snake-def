@@ -9,73 +9,36 @@ case class GameState(
                       direction: Direction,
                       applePosition: Point,
                       growthRemaining: Int,
-                      gameOver: Boolean,
-                      randomSeed: Int = 0
+                      gameOver: Boolean
                     ) {
 
   def step(newDirection: Direction, random: RandomGenerator, gridDims: Dimensions): GameState = {
-    if (gameOver) return this
-
-<<<<<<< HEAD
-=======
-  // Initialize apple position
-  applePosition = generateApplePosition()
-
-  def getCellType(p: Point): CellType = {
-    if (snakeBody.nonEmpty && snakeBody.head == p) {
-      SnakeHead(currentDirection)
-    } else if (snakeBody.contains(p)) {
-      val index = snakeBody.indexOf(p)
-      val distance = if (snakeBody.length <= 1) 0f else index.toFloat / (snakeBody.length - 1).toFloat
-      SnakeBody(distance)
-    } else if (p == applePosition && applePosition != null) {
-      Apple()
-    } else {
-      Empty()
+    if (gameOver) {
+      // Even when game is over, we update direction for display purposes
+      return this.copy(direction = newDirection)
     }
-  }
 
-  def step(): Unit = {
-    if (gameOverFlag) return
-
-    // Find the last valid direction in the queue
-    var newDirection = currentDirection
-    for (dir <- directionQueue) {
-      if (dir != newDirection.opposite) {
-        newDirection = dir
-      }
-    }
-    directionQueue = List()  // Empties the queue
-    currentDirection = newDirection
-
->>>>>>> 87c33a93297436c8d0c4ec5d2fcf8c70524baa4c
     val currentHead = snakeBody.head
     val newHead = movePoint(currentHead, newDirection, gridDims)
 
-<<<<<<< HEAD
     // Check collision - if growing, check all body; if not growing, exclude tail
-=======
->>>>>>> 87c33a93297436c8d0c4ec5d2fcf8c70524baa4c
     val willCollide = if (growthRemaining > 0) {
-      // If it grows, check all body
       snakeBody.contains(newHead)
     } else {
-<<<<<<< HEAD
-=======
-      // If it doesn't grow, don't check the tail
->>>>>>> 87c33a93297436c8d0c4ec5d2fcf8c70524baa4c
       snakeBody.init.contains(newHead)
     }
 
     if (willCollide) {
-      return this.copy(gameOver = true, direction = newDirection)
+      return GameState(
+        snakeBody = snakeBody,
+        direction = newDirection,
+        applePosition = applePosition,
+        growthRemaining = growthRemaining,
+        gameOver = true
+      )
     }
 
-<<<<<<< HEAD
     // Check if apple was eaten
-=======
-    // Check if apple was eaten, but before moving
->>>>>>> 87c33a93297436c8d0c4ec5d2fcf8c70524baa4c
     val ateApple = newHead == applePosition
 
     // Move snake - add new head
@@ -141,9 +104,9 @@ class GameLogic(val random: RandomGenerator, val gridDims: Dimensions) {
     gameOver = false
   )
 
-  // These are our allowed vars according to requirements
-  private var currentState: GameState = initialState
-  private var stateHistory: List[GameState] = List(initialState)
+  // These are our vars - using a simple list + index approach
+  private var allStates: List[GameState] = List(initialState)
+  private var currentIndex: Int = 0
   private var reverseMode: Boolean = false
   private var directionQueue: List[Direction] = List()
 
@@ -161,7 +124,7 @@ class GameLogic(val random: RandomGenerator, val gridDims: Dimensions) {
   }
 
   def getCellType(p: Point): CellType = {
-    val state = currentState
+    val state = allStates(currentIndex)
     if (state.snakeBody.nonEmpty && state.snakeBody.head == p) {
       SnakeHead(state.direction)
     } else if (state.snakeBody.contains(p)) {
@@ -178,49 +141,52 @@ class GameLogic(val random: RandomGenerator, val gridDims: Dimensions) {
   def step(): Unit = {
     if (reverseMode) {
       // In reverse mode, go back one state if possible
-      if (stateHistory.length > 1) {
-        // Remove the current state from history
-        stateHistory = stateHistory.tail
-        // Set current state to the previous state
-        currentState = stateHistory.head
+      if (currentIndex > 0) {
+        currentIndex -= 1
       }
       // Clear direction queue when reversing
       directionQueue = List()
     } else {
       // Normal forward mode
-      if (!currentState.gameOver) {
-        // Process direction queue - take first valid direction
-        val newDirection = directionQueue
-          .find(_ != currentState.direction.opposite)
-          .getOrElse(currentState.direction)
+      val currentState = allStates(currentIndex)
 
-        // Clear the queue after processing
-        directionQueue = List()
+      // Process direction queue - take ONLY the first valid direction
+      val newDirection = directionQueue
+        .find(d => d != currentState.direction.opposite)
+        .getOrElse(currentState.direction)
 
-        // Generate new state
-        val newState = currentState.step(newDirection, random, gridDims)
+      // Clear the queue after processing
+      directionQueue = List()
 
-        // Update current state and add to history
-        currentState = newState
-        stateHistory = newState :: stateHistory
+      // Generate new state
+      val newState = currentState.step(newDirection, random, gridDims)
+
+      // When moving forward from a past state (after reversing),
+      // we need to truncate the future states
+      if (currentIndex < allStates.length - 1) {
+        // We're not at the end of history, so truncate
+        allStates = allStates.take(currentIndex + 1)
       }
+
+      // Add the new state
+      allStates = allStates :+ newState
+      currentIndex += 1
     }
   }
 
   def changeDir(d: Direction): Unit = {
-    if (!currentState.gameOver) {
+    // Allow direction changes anytime except when in reverse mode
+    if (!reverseMode) {
       directionQueue = directionQueue :+ d
     }
   }
 
-  def gameOver: Boolean = currentState.gameOver
+  def gameOver: Boolean = allStates(currentIndex).gameOver
 
   def setReverse(r: Boolean): Unit = {
     reverseMode = r
-    if (!r) {
-      // When exiting reverse mode, clear direction queue
-      directionQueue = List()
-    }
+    // Clear direction queue when entering or exiting reverse mode
+    directionQueue = List()
   }
 }
 
