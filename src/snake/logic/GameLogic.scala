@@ -3,110 +3,68 @@ package snake.logic
 import engine.random.RandomGenerator
 import snake.logic.GameLogic._
 
-/** To implement Snake, complete the `TODOs` below.
- *
- * If you need additional files,
- * please also put them in the `snake` package.
- */
-class GameLogic(val random: RandomGenerator,
-                val gridDims: Dimensions) {
+// Immutable game state
+case class GameState(
+                      snakeBody: List[Point],
+                      direction: Direction,
+                      applePosition: Point,
+                      growthRemaining: Int,
+                      gameOver: Boolean,
+                      randomSeed: Int = 0
+                    ) {
 
-  // Snake body represented as list of points (head first)
-  private var snakeBody: List[Point] = List(Point(2, 0), Point(1, 0), Point(0, 0))
-  private var currentDirection: Direction = East()
-  private var directionQueue: List[Direction] = List()
-  private var applePosition: Point = _
-  private var growthRemaining: Int = 0
-  private var gameOverFlag: Boolean = false
+  def step(newDirection: Direction, random: RandomGenerator, gridDims: Dimensions): GameState = {
+    if (gameOver) return this
 
-  // Initialize apple position
-  applePosition = generateApplePosition()
-
-  def getCellType(p: Point): CellType = {
-    if (snakeBody.nonEmpty && snakeBody.head == p) {
-      SnakeHead(currentDirection)
-    } else if (snakeBody.contains(p)) {
-      val index = snakeBody.indexOf(p)
-      val distance = if (snakeBody.length <= 1) 0f else index.toFloat / (snakeBody.length - 1).toFloat
-      SnakeBody(distance)
-    } else if (p == applePosition && applePosition != null) {
-      Apple()
-    } else {
-      Empty()
-    }
-  }
-
-  def step(): Unit = {
-    // Prova AAAA
-
-    if (gameOverFlag) return
-
-    // Process direction queue to find the last valid direction
-    var newDirection = currentDirection
-    for (dir <- directionQueue) {
-      if (dir != newDirection.opposite) {
-        newDirection = dir
-      }
-    }
-    directionQueue = List()
-    currentDirection = newDirection
-
-    // Calculate new head position
     val currentHead = snakeBody.head
-    val newHead = movePoint(currentHead, currentDirection)
+    val newHead = movePoint(currentHead, newDirection, gridDims)
 
-    // Check for collision with body
-    // Special case: if we're not growing and the new head position is the current tail,
-    // this is OK (the tail will move away)
+    // Check collision - if growing, check all body; if not growing, exclude tail
     val willCollide = if (growthRemaining > 0) {
       snakeBody.contains(newHead)
     } else {
-      // Check collision with all body parts except the tail
       snakeBody.init.contains(newHead)
     }
 
     if (willCollide) {
-      gameOverFlag = true
-      return
+      return this.copy(gameOver = true, direction = newDirection)
     }
 
-    // Check if apple was eaten BEFORE moving
+    // Check if apple was eaten
     val ateApple = newHead == applePosition
 
     // Move snake - add new head
-    snakeBody = newHead :: snakeBody
+    var newSnakeBody = newHead :: snakeBody
 
     // Handle growth/shrinking
+    var newGrowth = growthRemaining
     if (growthRemaining > 0) {
-      growthRemaining -= 1
+      newGrowth -= 1
     } else {
       // Remove tail if not growing
-      if (snakeBody.length > 1) {
-        snakeBody = snakeBody.init
+      if (newSnakeBody.length > 1) {
+        newSnakeBody = newSnakeBody.init
       }
     }
 
     // If apple was eaten, generate new apple position and start growing
+    var newApplePos = applePosition
     if (ateApple) {
-      growthRemaining += 3
-      applePosition = generateApplePosition()
+      newGrowth += 3
+      newApplePos = generateApplePosition(newSnakeBody, random, gridDims)
     }
+
+    GameState(
+      snakeBody = newSnakeBody,
+      direction = newDirection,
+      applePosition = newApplePos,
+      growthRemaining = newGrowth,
+      gameOver = false
+    )
   }
 
-  def changeDir(d: Direction): Unit = {
-    if (!gameOverFlag) {
-      directionQueue = directionQueue :+ d
-    }
-  }
-
-  def gameOver: Boolean = gameOverFlag
-
-  def setReverse(r: Boolean): Unit = {
-    // Assignment 2.1: Do nothing for reverse mode
-  }
-
-  private def movePoint(point: Point, direction: Direction): Point = {
-    direction match {
+  private def movePoint(point: Point, dir: Direction, gridDims: Dimensions): Point = {
+    dir match {
       case East() => Point((point.x + 1) % gridDims.width, point.y)
       case West() => Point((point.x - 1 + gridDims.width) % gridDims.width, point.y)
       case North() => Point(point.x, (point.y - 1 + gridDims.height) % gridDims.height)
@@ -114,12 +72,11 @@ class GameLogic(val random: RandomGenerator,
     }
   }
 
-  private def generateApplePosition(): Point = {
+  private def generateApplePosition(snake: List[Point], random: RandomGenerator, gridDims: Dimensions): Point = {
     val allPoints = gridDims.allPointsInside
-    val freePoints = allPoints.filterNot(p => snakeBody.contains(p))
+    val freePoints = allPoints.filterNot(p => snake.contains(p))
 
     if (freePoints.isEmpty) {
-      // No free space - return null to indicate no apple can be placed
       null
     } else {
       val index = random.randomInt(freePoints.length)
@@ -128,23 +85,102 @@ class GameLogic(val random: RandomGenerator,
   }
 }
 
-/** GameLogic companion object */
+class GameLogic(val random: RandomGenerator, val gridDims: Dimensions) {
+
+  // Initial game state
+  private val initialState = GameState(
+    snakeBody = List(Point(2, 0), Point(1, 0), Point(0, 0)),
+    direction = East(),
+    applePosition = generateInitialApple(),
+    growthRemaining = 0,
+    gameOver = false
+  )
+
+  // These are our allowed vars according to requirements
+  private var currentState: GameState = initialState
+  private var stateHistory: List[GameState] = List(initialState)
+  private var reverseMode: Boolean = false
+  private var directionQueue: List[Direction] = List()
+
+  private def generateInitialApple(): Point = {
+    val initialSnake = List(Point(2, 0), Point(1, 0), Point(0, 0))
+    val allPoints = gridDims.allPointsInside
+    val freePoints = allPoints.filterNot(p => initialSnake.contains(p))
+
+    if (freePoints.isEmpty) {
+      null
+    } else {
+      val index = random.randomInt(freePoints.length)
+      freePoints(index)
+    }
+  }
+
+  def getCellType(p: Point): CellType = {
+    val state = currentState
+    if (state.snakeBody.nonEmpty && state.snakeBody.head == p) {
+      SnakeHead(state.direction)
+    } else if (state.snakeBody.contains(p)) {
+      val index = state.snakeBody.indexOf(p)
+      val distance = if (state.snakeBody.length <= 1) 0f else index.toFloat / (state.snakeBody.length - 1).toFloat
+      SnakeBody(distance)
+    } else if (p == state.applePosition && state.applePosition != null) {
+      Apple()
+    } else {
+      Empty()
+    }
+  }
+
+  def step(): Unit = {
+    if (reverseMode) {
+      // In reverse mode, go back one state if possible
+      if (stateHistory.length > 1) {
+        // Remove the current state from history
+        stateHistory = stateHistory.tail
+        // Set current state to the previous state
+        currentState = stateHistory.head
+      }
+      // Clear direction queue when reversing
+      directionQueue = List()
+    } else {
+      // Normal forward mode
+      if (!currentState.gameOver) {
+        // Process direction queue - take first valid direction
+        val newDirection = directionQueue
+          .find(_ != currentState.direction.opposite)
+          .getOrElse(currentState.direction)
+
+        // Clear the queue after processing
+        directionQueue = List()
+
+        // Generate new state
+        val newState = currentState.step(newDirection, random, gridDims)
+
+        // Update current state and add to history
+        currentState = newState
+        stateHistory = newState :: stateHistory
+      }
+    }
+  }
+
+  def changeDir(d: Direction): Unit = {
+    if (!currentState.gameOver) {
+      directionQueue = directionQueue :+ d
+    }
+  }
+
+  def gameOver: Boolean = currentState.gameOver
+
+  def setReverse(r: Boolean): Unit = {
+    reverseMode = r
+    if (!r) {
+      // When exiting reverse mode, clear direction queue
+      directionQueue = List()
+    }
+  }
+}
+
 object GameLogic {
-
-  val FramesPerSecond: Int = 5 // change this to increase/decrease speed of game
-
-  val DrawSizeFactor = 1.0 // increase this to make the game bigger (for high-res screens)
-  // or decrease to make game smaller
-
-  // These are the dimensions used when playing the game.
-  // When testing the game, other dimensions are passed to
-  // the constructor of GameLogic.
-  //
-  // DO NOT USE the variable DefaultGridDims in your code!
-  //
-  // Doing so will cause tests which have different dimensions to FAIL!
-  //
-  // In your code only use gridDims.width and gridDims.height
-  // do NOT use DefaultGridDims.width and DefaultGridDims.height
+  val FramesPerSecond: Int = 5
+  val DrawSizeFactor = 1.0
   val DefaultGridDims: Dimensions = Dimensions(width = 25, height = 25)
 }

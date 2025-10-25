@@ -1,0 +1,1019 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="snake.reverse.ReverseTests" tests="6" skipped="0" failures="2" errors="0" timestamp="2025-09-20T22:30:10" hostname="DESKTOP-4NRB2QG" time="0.071">
+  <properties/>
+  <testcase name="testReverseSimple" classname="snake.reverse.ReverseTests" time="0.006"/>
+  <testcase name="testReversePastStart" classname="snake.reverse.ReverseTests" time="0.003"/>
+  <testcase name="testReverseToDirectionChange" classname="snake.reverse.ReverseTests" time="0.04">
+    <failure message="org.scalatest.exceptions.TestFailedException: didPass was false&#10;Hint: After reversing to a GameState where the snake changed direction, the snake should keep&#10;going in the direction it is pointing to (if user does not input anything), and not perform&#10;automatically the same turn it performed the previous time&#10;--------------------------------------------------------------------------------&#10;This is what went wrong:&#10;&#10;step=0, rand=2, actions=&lt;&gt;&#10;Want  | Got ✓&#10;-------------&#10;OO&gt;.. | OO&gt;..&#10;A.... | A....&#10;..... | .....&#10;&#10;step=1, rand=2, actions=&lt;Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;.OO&gt;. | .OO&gt;.&#10;A.... | A....&#10;..... | .....&#10;&#10;step=2, rand=2, actions=&lt;ChangeDir(South()), Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;..OO. | ..OO.&#10;A..v. | A..v.&#10;..... | .....&#10;&#10;step=3, rand=2, actions=&lt;Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;...O. | ...O.&#10;A..O. | A..O.&#10;...v. | ...v.&#10;&#10;step=4, rand=2, actions=&lt;ChangeDir(East()), ChangeDir(West()), Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;..... | .....&#10;A..O. | A..O.&#10;..&lt;O. | ...O&gt;&#10;&#10;step=5, rand=2, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;..... | .....&#10;A.... | A....&#10;.&lt;OO. | &gt;..OO&#10;&#10;step=6, rand=2, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;..... | .....&#10;A.... | A....&#10;&lt;OO.. | O&gt;..O&#10;&#10;step=7, rand=2, actions=&lt;ReverseGame(true), Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;..... | .....&#10;A.... | A....&#10;.&lt;OO. | &gt;..OO&#10;&#10;step=8, rand=2, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;..... | .....&#10;A..O. | A..O.&#10;..&lt;O. | ...O&gt;&#10;&#10;step=9, rand=2, actions=&lt;Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;...O. | ...O.&#10;A..O. | A..O.&#10;...v. | ...v.&#10;&#10;step=10, rand=2, actions=&lt;ReverseGame(false), Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;...v. | ...v.&#10;A..O. | A..O.&#10;...O. | ...O.&#10;&#10;step=11, rand=2, actions=&lt;Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;...O. | ...O.&#10;A..v. | A..v.&#10;...O. | ...O.&#10;&#10;step=12, rand=2, actions=&lt;ReverseGame(true), Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;...v. | ...v.&#10;A..O. | A..O.&#10;...O. | ...O.&#10;&#10;step=13, rand=2, actions=&lt;Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;...O. | ...O.&#10;A..O. | A..O.&#10;...v. | ...v.&#10;&#10;step=14, rand=2, actions=&lt;Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;..OO. | ..OO.&#10;A..v. | A..v.&#10;..... | .....&#10;&#10;step=15, rand=2, actions=&lt;Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;.OO&gt;. | .OO&gt;.&#10;A.... | A....&#10;..... | .....&#10;&#10;step=16, rand=2, actions=&lt;ReverseGame(false), Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;..OO&gt; | ..OO&gt;&#10;A.... | A....&#10;..... | .....&#10;&#10;" type="org.scalatest.exceptions.TestFailedException">org.scalatest.exceptions.TestFailedException: didPass was false
+Hint: After reversing to a GameState where the snake changed direction, the snake should keep
+going in the direction it is pointing to (if user does not input anything), and not perform
+automatically the same turn it performed the previous time
+--------------------------------------------------------------------------------
+This is what went wrong:
+
+step=0, rand=2, actions=&lt;&gt;
+Want  | Got ✓
+-------------
+OO&gt;.. | OO&gt;..
+A.... | A....
+..... | .....
+
+step=1, rand=2, actions=&lt;Step&gt;
+Want  | Got ✓
+-------------
+.OO&gt;. | .OO&gt;.
+A.... | A....
+..... | .....
+
+step=2, rand=2, actions=&lt;ChangeDir(South()), Step&gt;
+Want  | Got ✓
+-------------
+..OO. | ..OO.
+A..v. | A..v.
+..... | .....
+
+step=3, rand=2, actions=&lt;Step&gt;
+Want  | Got ✓
+-------------
+...O. | ...O.
+A..O. | A..O.
+...v. | ...v.
+
+step=4, rand=2, actions=&lt;ChangeDir(East()), ChangeDir(West()), Step&gt;
+Want  | Got ✗
+-------------
+..... | .....
+A..O. | A..O.
+..&lt;O. | ...O&gt;
+
+step=5, rand=2, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+..... | .....
+A.... | A....
+.&lt;OO. | &gt;..OO
+
+step=6, rand=2, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+..... | .....
+A.... | A....
+&lt;OO.. | O&gt;..O
+
+step=7, rand=2, actions=&lt;ReverseGame(true), Step&gt;
+Want  | Got ✗
+-------------
+..... | .....
+A.... | A....
+.&lt;OO. | &gt;..OO
+
+step=8, rand=2, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+..... | .....
+A..O. | A..O.
+..&lt;O. | ...O&gt;
+
+step=9, rand=2, actions=&lt;Step&gt;
+Want  | Got ✓
+-------------
+...O. | ...O.
+A..O. | A..O.
+...v. | ...v.
+
+step=10, rand=2, actions=&lt;ReverseGame(false), Step&gt;
+Want  | Got ✓
+-------------
+...v. | ...v.
+A..O. | A..O.
+...O. | ...O.
+
+step=11, rand=2, actions=&lt;Step&gt;
+Want  | Got ✓
+-------------
+...O. | ...O.
+A..v. | A..v.
+...O. | ...O.
+
+step=12, rand=2, actions=&lt;ReverseGame(true), Step&gt;
+Want  | Got ✓
+-------------
+...v. | ...v.
+A..O. | A..O.
+...O. | ...O.
+
+step=13, rand=2, actions=&lt;Step&gt;
+Want  | Got ✓
+-------------
+...O. | ...O.
+A..O. | A..O.
+...v. | ...v.
+
+step=14, rand=2, actions=&lt;Step&gt;
+Want  | Got ✓
+-------------
+..OO. | ..OO.
+A..v. | A..v.
+..... | .....
+
+step=15, rand=2, actions=&lt;Step&gt;
+Want  | Got ✓
+-------------
+.OO&gt;. | .OO&gt;.
+A.... | A....
+..... | .....
+
+step=16, rand=2, actions=&lt;ReverseGame(false), Step&gt;
+Want  | Got ✓
+-------------
+..OO&gt; | ..OO&gt;
+A.... | A....
+..... | .....
+
+
+	at app//org.scalatest.Assertions.newAssertionFailedException(Assertions.scala:530)
+	at app//org.scalatest.Assertions.newAssertionFailedException$(Assertions.scala:529)
+	at app//org.scalatest.FunSuite.newAssertionFailedException(FunSuite.scala:1560)
+	at app//org.scalatest.Assertions$AssertionsHelper.macroAssert(Assertions.scala:503)
+	at app//generic.GameTestSuite.checkGame(GameTestSuite.scala:298)
+	at app//snake.SnakeTestSuiteBase.checkGame(SnakeTestSuiteBase.scala:102)
+	at app//snake.reverse.ReverseTests.$anonfun$new$3(ReverseTests.scala:136)
+	at app//scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)
+	at app//infrastructure.TestBase.$anonfun$test$1(TestBase.scala:36)
+	at app//org.scalatest.OutcomeOf.outcomeOf(OutcomeOf.scala:85)
+	at app//org.scalatest.OutcomeOf.outcomeOf$(OutcomeOf.scala:83)
+	at app//org.scalatest.OutcomeOf$.outcomeOf(OutcomeOf.scala:104)
+	at app//org.scalatest.Transformer.apply(Transformer.scala:22)
+	at app//org.scalatest.Transformer.apply(Transformer.scala:20)
+	at app//org.scalatest.FunSuiteLike$$anon$1.apply(FunSuiteLike.scala:186)
+	at app//org.scalatest.TestSuite.withFixture(TestSuite.scala:196)
+	at app//org.scalatest.TestSuite.withFixture$(TestSuite.scala:195)
+	at app//infrastructure.TestBase.org$scalatest$concurrent$TimeLimitedTests$$super$withFixture(TestBase.scala:9)
+	at app//org.scalatest.concurrent.TimeLimitedTests.$anonfun$withFixture$3(TimeLimitedTests.scala:154)
+	at app//org.scalatest.enablers.Timed$$anon$1.timeoutAfter(Timed.scala:127)
+	at app//org.scalatest.concurrent.TimeLimits.failAfterImpl(TimeLimits.scala:239)
+	at app//org.scalatest.concurrent.TimeLimits.failAfterImpl$(TimeLimits.scala:233)
+	at app//org.scalatest.concurrent.TimeLimits$.failAfterImpl(TimeLimits.scala:305)
+	at app//org.scalatest.concurrent.TimeLimitedTests.withFixture(TimeLimitedTests.scala:153)
+	at app//org.scalatest.concurrent.TimeLimitedTests.withFixture$(TimeLimitedTests.scala:150)
+	at app//infrastructure.TestBase.withFixture(TestBase.scala:9)
+	at app//org.scalatest.FunSuiteLike.invokeWithFixture$1(FunSuiteLike.scala:184)
+	at app//org.scalatest.FunSuiteLike.$anonfun$runTest$1(FunSuiteLike.scala:196)
+	at app//org.scalatest.SuperEngine.runTestImpl(Engine.scala:286)
+	at app//org.scalatest.FunSuiteLike.runTest(FunSuiteLike.scala:196)
+	at app//org.scalatest.FunSuiteLike.runTest$(FunSuiteLike.scala:178)
+	at app//org.scalatest.FunSuite.runTest(FunSuite.scala:1560)
+	at app//org.scalatest.FunSuiteLike.$anonfun$runTests$1(FunSuiteLike.scala:229)
+	at app//org.scalatest.SuperEngine.$anonfun$runTestsInBranch$1(Engine.scala:393)
+	at app//scala.collection.immutable.List.foreach(List.scala:334)
+	at app//org.scalatest.SuperEngine.traverseSubNodes$1(Engine.scala:381)
+	at app//org.scalatest.SuperEngine.runTestsInBranch(Engine.scala:376)
+	at app//org.scalatest.SuperEngine.runTestsImpl(Engine.scala:458)
+	at app//org.scalatest.FunSuiteLike.runTests(FunSuiteLike.scala:229)
+	at app//org.scalatest.FunSuiteLike.runTests$(FunSuiteLike.scala:228)
+	at app//org.scalatest.FunSuite.runTests(FunSuite.scala:1560)
+	at app//org.scalatest.Suite.run(Suite.scala:1124)
+	at app//org.scalatest.Suite.run$(Suite.scala:1106)
+	at app//org.scalatest.FunSuite.org$scalatest$FunSuiteLike$$super$run(FunSuite.scala:1560)
+	at app//org.scalatest.FunSuiteLike.$anonfun$run$1(FunSuiteLike.scala:233)
+	at app//org.scalatest.SuperEngine.runImpl(Engine.scala:518)
+	at app//org.scalatest.FunSuiteLike.run(FunSuiteLike.scala:233)
+	at app//org.scalatest.FunSuiteLike.run$(FunSuiteLike.scala:232)
+	at app//infrastructure.TestBase.run(TestBase.scala:26)
+	at app//org.scalatest.Suite.callExecuteOnSuite$1(Suite.scala:1187)
+	at app//org.scalatest.Suite.$anonfun$runNestedSuites$1(Suite.scala:1234)
+	at app//scala.collection.ArrayOps$.foreach$extension(ArrayOps.scala:1324)
+	at app//org.scalatest.Suite.runNestedSuites(Suite.scala:1232)
+	at app//org.scalatest.Suite.runNestedSuites$(Suite.scala:1166)
+	at app//org.scalatest.Suites.runNestedSuites(Suites.scala:56)
+	at app//org.scalatest.Suite.run(Suite.scala:1121)
+	at app//org.scalatest.Suite.run$(Suite.scala:1106)
+	at app//snake.SnakeTestSuite.runDirect(SnakeTestSuite.scala:24)
+	at app//snake.SnakeTestSuite.run(SnakeTestSuite.scala:16)
+	at app//org.scalatestplus.junit.JUnitRunner.run(JUnitRunner.scala:99)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.runTestClass(JUnitTestClassExecutor.java:112)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:58)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:40)
+	at org.gradle.api.internal.tasks.testing.junit.AbstractJUnitTestClassProcessor.processTestClass(AbstractJUnitTestClassProcessor.java:54)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:53)
+	at java.base@21.0.8/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base@21.0.8/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:92)
+	at jdk.proxy1/jdk.proxy1.$Proxy4.processTestClass(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$2.run(TestWorker.java:183)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:132)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:121)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
+	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+</failure>
+  </testcase>
+  <testcase name="testReverseGameOver" classname="snake.reverse.ReverseTests" time="0.002"/>
+  <testcase name="testChangeThePast" classname="snake.reverse.ReverseTests" time="0.002"/>
+  <testcase name="testReverseLong" classname="snake.reverse.ReverseTests" time="0.015">
+    <failure message="org.scalatest.exceptions.TestFailedException: didPass was false&#10;--------------------------------------------------------------------------------&#10;This is what went wrong:&#10;&#10;step=0, rand=2, actions=&lt;&gt;&#10;Want  | Got ✓&#10;-------------&#10;OO&gt;.. | OO&gt;..&#10;A.... | A....&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=1, rand=2, actions=&lt;Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;.OO&gt;. | .OO&gt;.&#10;A.... | A....&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=2, rand=2, actions=&lt;ChangeDir(South()), ChangeDir(West()), Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;..OO. | ..OO.&#10;A..v. | A..v.&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=3, rand=2, actions=&lt;ChangeDir(West()), Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;...O. | ...O.&#10;A.&lt;O. | A.&lt;O.&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=4, rand=2, actions=&lt;Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;..... | .....&#10;A&lt;OO. | A&lt;OO.&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=5, rand=4, actions=&lt;Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;....A | ....A&#10;&lt;OO.. | &lt;OO..&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=6, rand=4, actions=&lt;Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;....A | ....A&#10;OOO.&lt; | OOO.&lt;&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=7, rand=4, actions=&lt;Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;....A | ....A&#10;OOO&lt;O | OOO&lt;O&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=8, rand=4, actions=&lt;ChangeDir(North()), Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;...^A | ...^A&#10;OOOOO | OOOOO&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=9, rand=2, actions=&lt;ChangeDir(East()), Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;..AO&gt; | ..AO&gt;&#10;OO.OO | OO.OO&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=10, rand=2, actions=&lt;Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;&gt;.AOO | &gt;.AOO&#10;OO.OO | OO.OO&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=11, rand=2, actions=&lt;Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;O&gt;AOO | O&gt;AOO&#10;OO.OO | OO.OO&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=12, rand=4, actions=&lt;Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;OO&gt;OO | OO&gt;OO&#10;OO.OO | OO.OO&#10;...A. | ...A.&#10;..... | .....&#10;..... | .....&#10;&#10;step=13, rand=4, actions=&lt;Step&gt;&#10;Want              | Got ✓            &#10;-------------------------------------&#10;GameOverDisplay() | GameOverDisplay()&#10;&#10;step=14, rand=4, actions=&lt;Step&gt;&#10;Want              | Got ✓            &#10;-------------------------------------&#10;GameOverDisplay() | GameOverDisplay()&#10;&#10;step=15, rand=4, actions=&lt;ReverseGame(true), Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;OO&gt;OO | OO&gt;OO&#10;OO.OO | OO.OO&#10;...A. | ...A.&#10;..... | .....&#10;..... | .....&#10;&#10;step=16, rand=4, actions=&lt;Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;O&gt;AOO | O&gt;AOO&#10;OO.OO | OO.OO&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=17, rand=4, actions=&lt;ReverseGame(false), Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;OO&gt;OO | OO&gt;OO&#10;OO.OO | OO.OO&#10;...A. | ...A.&#10;..... | .....&#10;..... | .....&#10;&#10;step=18, rand=4, actions=&lt;ChangeDir(South()), Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;OOOOO | OOOOO&#10;OOvOO | OOvOO&#10;...A. | ...A.&#10;..... | .....&#10;..... | .....&#10;&#10;step=19, rand=4, actions=&lt;Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;OOOOO | OOOOO&#10;OOOOO | OOOOO&#10;..vA. | ..vA.&#10;..... | .....&#10;..... | .....&#10;&#10;step=20, rand=2, actions=&lt;ChangeDir(East()), Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;OOOOO | OOOOO&#10;OOOOO | OOOOO&#10;..O&gt;A | ..O&gt;A&#10;..... | .....&#10;..... | .....&#10;&#10;step=21, rand=4, actions=&lt;Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;OOOOO | OOOOO&#10;OOOOO | OOOOO&#10;..OO&gt; | ..OO&gt;&#10;..A.. | ..A..&#10;..... | .....&#10;&#10;step=22, rand=4, actions=&lt;Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;OOOOO | OOOOO&#10;OOOOO | OOOOO&#10;&gt;.OOO | &gt;.OOO&#10;..A.. | ..A..&#10;..... | .....&#10;&#10;step=23, rand=4, actions=&lt;Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;OOOOO | OOOOO&#10;OOOOO | OOOOO&#10;O&gt;OOO | O&gt;OOO&#10;..A.. | ..A..&#10;..... | .....&#10;&#10;step=24, rand=4, actions=&lt;ChangeDir(South()), ChangeDir(East()), Step&gt;&#10;Want              | Got ✗&#10;-------------------------&#10;GameOverDisplay() | OOOOO&#10;                  | OOOOO&#10;                  | OOOOO&#10;                  | .vA..&#10;                  | .....&#10;&#10;step=25, rand=4, actions=&lt;Step&gt;&#10;Want              | Got ✗&#10;-------------------------&#10;GameOverDisplay() | OOOOO&#10;                  | OOOOO&#10;                  | OOOOO&#10;                  | .OA..&#10;                  | .v...&#10;&#10;step=26, rand=4, actions=&lt;ReverseGame(true), Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;OOOOO | OOOOO&#10;OOOOO | OOOOO&#10;O&gt;OOO | OOOOO&#10;..A.. | .vA..&#10;..... | .....&#10;&#10;step=27, rand=4, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;OOOOO | OOOOO&#10;OOOOO | OOOOO&#10;&gt;.OOO | O&gt;OOO&#10;..A.. | ..A..&#10;..... | .....&#10;&#10;step=28, rand=4, actions=&lt;ReverseGame(false), Step&gt;&#10;Want  | Got ✗            &#10;-------------------------&#10;OOOOO | GameOverDisplay()&#10;OOOOO |                  &#10;O&gt;OOO |                  &#10;..A.. |                  &#10;..... |                  &#10;&#10;step=29, rand=4, actions=&lt;ChangeDir(South()), Step&gt;&#10;Want  | Got ✗            &#10;-------------------------&#10;OOOOO | GameOverDisplay()&#10;OOOOO |                  &#10;OOOOO |                  &#10;.vA.. |                  &#10;..... |                  &#10;&#10;step=30, rand=2, actions=&lt;ChangeDir(East()), Step&gt;&#10;Want  | Got ✗            &#10;-------------------------&#10;OOOOO | GameOverDisplay()&#10;OOOOO |                  &#10;OOOOO |                  &#10;.O&gt;.A |                  &#10;..... |                  &#10;&#10;step=31, rand=2, actions=&lt;Step&gt;&#10;Want  | Got ✗            &#10;-------------------------&#10;OOOOO | GameOverDisplay()&#10;OOOOO |                  &#10;OOOOO |                  &#10;.OO&gt;A |                  &#10;..... |                  &#10;&#10;step=32, rand=4, actions=&lt;Step&gt;&#10;Want  | Got ✗            &#10;-------------------------&#10;OOOOO | GameOverDisplay()&#10;OOOOO |                  &#10;OOOOO |                  &#10;.OOO&gt; |                  &#10;...A. |                  &#10;&#10;step=33, rand=4, actions=&lt;Step&gt;&#10;Want  | Got ✗            &#10;-------------------------&#10;OOOOO | GameOverDisplay()&#10;OOOOO |                  &#10;OOOOO |                  &#10;&gt;OOOO |                  &#10;...A. |                  &#10;&#10;step=34, rand=4, actions=&lt;ChangeDir(South()), Step&gt;&#10;Want  | Got ✗            &#10;-------------------------&#10;OOOOO | GameOverDisplay()&#10;OOOOO |                  &#10;OOOOO |                  &#10;OOOOO |                  &#10;v..A. |                  &#10;&#10;step=35, rand=4, actions=&lt;ChangeDir(East()), Step&gt;&#10;Want  | Got ✗            &#10;-------------------------&#10;OOOOO | GameOverDisplay()&#10;OOOOO |                  &#10;OOOOO |                  &#10;OOOOO |                  &#10;O&gt;.A. |                  &#10;&#10;step=36, rand=4, actions=&lt;Step&gt;&#10;Want  | Got ✗            &#10;-------------------------&#10;OOOOO | GameOverDisplay()&#10;OOOOO |                  &#10;OOOOO |                  &#10;OOOOO |                  &#10;OO&gt;A. |                  &#10;&#10;step=37, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗            &#10;-------------------------&#10;OOOOO | GameOverDisplay()&#10;OOOOO |                  &#10;OOOOO |                  &#10;OOOOO |                  &#10;OOO&gt;A |                  &#10;&#10;step=38, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗            &#10;-------------------------&#10;OOOOO | GameOverDisplay()&#10;OOOOO |                  &#10;OOOOO |                  &#10;OOOOO |                  &#10;OOOO&gt; |                  &#10;&#10;step=39, rand=0, actions=&lt;Step&gt;&#10;Want              | Got ✓            &#10;-------------------------------------&#10;GameOverDisplay() | GameOverDisplay()&#10;&#10;step=40, rand=0, actions=&lt;Step&gt;&#10;Want              | Got ✓            &#10;-------------------------------------&#10;GameOverDisplay() | GameOverDisplay()&#10;&#10;step=41, rand=0, actions=&lt;Step&gt;&#10;Want              | Got ✓            &#10;-------------------------------------&#10;GameOverDisplay() | GameOverDisplay()&#10;&#10;step=42, rand=0, actions=&lt;ReverseGame(true), Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;OOOOO | OOOOO&#10;OOOOO | OOOOO&#10;OOOOO | O&gt;OOO&#10;OOOOO | ..A..&#10;OOOO&gt; | .....&#10;&#10;step=43, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;OOOOO | OOOOO&#10;OOOOO | OOOOO&#10;OOOOO | &gt;.OOO&#10;OOOOO | ..A..&#10;OOO&gt;A | .....&#10;&#10;step=44, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;OOOOO | OOOOO&#10;OOOOO | OOOOO&#10;OOOOO | ..OO&gt;&#10;OOOOO | ..A..&#10;OO&gt;A. | .....&#10;&#10;step=45, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;OOOOO | OOOOO&#10;OOOOO | OOOOO&#10;OOOOO | ..O&gt;A&#10;OOOOO | .....&#10;O&gt;.A. | .....&#10;&#10;step=46, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;OOOOO | OOOOO&#10;OOOOO | OOOOO&#10;OOOOO | ..vA.&#10;OOOOO | .....&#10;v..A. | .....&#10;&#10;step=47, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;OOOOO | OOOOO&#10;OOOOO | OOvOO&#10;OOOOO | ...A.&#10;&gt;OOOO | .....&#10;...A. | .....&#10;&#10;step=48, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;OOOOO | OO&gt;OO&#10;OOOOO | OO.OO&#10;OOOOO | ...A.&#10;.OOO&gt; | .....&#10;...A. | .....&#10;&#10;step=49, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;OOOOO | O&gt;AOO&#10;OOOOO | OO.OO&#10;OOOOO | .....&#10;.OO&gt;A | .....&#10;..... | .....&#10;&#10;step=50, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;OOOOO | &gt;.AOO&#10;OOOOO | OO.OO&#10;OOOOO | .....&#10;.O&gt;.A | .....&#10;..... | .....&#10;&#10;step=51, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;OOOOO | ..AO&gt;&#10;OOOOO | OO.OO&#10;OOOOO | .....&#10;.vA.. | .....&#10;..... | .....&#10;&#10;step=52, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;OOOOO | ...^A&#10;OOOOO | OOOOO&#10;O&gt;OOO | .....&#10;..A.. | .....&#10;..... | .....&#10;&#10;step=53, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;OOOOO | ....A&#10;OOOOO | OOO&lt;O&#10;&gt;.OOO | .....&#10;..A.. | .....&#10;..... | .....&#10;&#10;step=54, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;OOOOO | ....A&#10;OOOOO | OOO.&lt;&#10;..OO&gt; | .....&#10;..A.. | .....&#10;..... | .....&#10;&#10;step=55, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;OOOOO | ....A&#10;OOOOO | &lt;OO..&#10;..O&gt;A | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=56, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;OOOOO | .....&#10;OOOOO | A&lt;OO.&#10;..vA. | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=57, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;OOOOO | ...O.&#10;OOvOO | A.&lt;O.&#10;...A. | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=58, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;OO&gt;OO | ..OO.&#10;OO.OO | A..v.&#10;...A. | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=59, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;O&gt;AOO | .OO&gt;.&#10;OO.OO | A....&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=60, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;&gt;.AOO | OO&gt;..&#10;OO.OO | A....&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=61, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;..AO&gt; | OO&gt;..&#10;OO.OO | A....&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=62, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;...^A | OO&gt;..&#10;OOOOO | A....&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=63, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;....A | OO&gt;..&#10;OOO&lt;O | A....&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=64, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;....A | OO&gt;..&#10;OOO.&lt; | A....&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=65, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;....A | OO&gt;..&#10;&lt;OO.. | A....&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=66, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;..... | OO&gt;..&#10;A&lt;OO. | A....&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=67, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;...O. | OO&gt;..&#10;A.&lt;O. | A....&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=68, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;..OO. | OO&gt;..&#10;A..v. | A....&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=69, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✗&#10;-------------&#10;.OO&gt;. | OO&gt;..&#10;A.... | A....&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=70, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;OO&gt;.. | OO&gt;..&#10;A.... | A....&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=71, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;OO&gt;.. | OO&gt;..&#10;A.... | A....&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=72, rand=0, actions=&lt;ReverseGame(false), Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;.OO&gt;. | .OO&gt;.&#10;A.... | A....&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=73, rand=0, actions=&lt;ChangeDir(South()), Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;..OO. | ..OO.&#10;A..v. | A..v.&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=74, rand=0, actions=&lt;ChangeDir(West()), Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;...O. | ...O.&#10;A.&lt;O. | A.&lt;O.&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=75, rand=0, actions=&lt;Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;..... | .....&#10;A&lt;OO. | A&lt;OO.&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=76, rand=4, actions=&lt;Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;....A | ....A&#10;&lt;OO.. | &lt;OO..&#10;..... | .....&#10;..... | .....&#10;..... | .....&#10;&#10;step=77, rand=4, actions=&lt;ChangeDir(South()), Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;....A | ....A&#10;OOO.. | OOO..&#10;v.... | v....&#10;..... | .....&#10;..... | .....&#10;&#10;step=78, rand=4, actions=&lt;ChangeDir(East()), Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;....A | ....A&#10;OOO.. | OOO..&#10;O&gt;... | O&gt;...&#10;..... | .....&#10;..... | .....&#10;&#10;step=79, rand=4, actions=&lt;Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;....A | ....A&#10;OOO.. | OOO..&#10;OO&gt;.. | OO&gt;..&#10;..... | .....&#10;..... | .....&#10;&#10;step=80, rand=4, actions=&lt;Step&gt;&#10;Want  | Got ✓&#10;-------------&#10;....A | ....A&#10;OO... | OO...&#10;OOO&gt;. | OOO&gt;.&#10;..... | .....&#10;..... | .....&#10;&#10;" type="org.scalatest.exceptions.TestFailedException">org.scalatest.exceptions.TestFailedException: didPass was false
+--------------------------------------------------------------------------------
+This is what went wrong:
+
+step=0, rand=2, actions=&lt;&gt;
+Want  | Got ✓
+-------------
+OO&gt;.. | OO&gt;..
+A.... | A....
+..... | .....
+..... | .....
+..... | .....
+
+step=1, rand=2, actions=&lt;Step&gt;
+Want  | Got ✓
+-------------
+.OO&gt;. | .OO&gt;.
+A.... | A....
+..... | .....
+..... | .....
+..... | .....
+
+step=2, rand=2, actions=&lt;ChangeDir(South()), ChangeDir(West()), Step&gt;
+Want  | Got ✓
+-------------
+..OO. | ..OO.
+A..v. | A..v.
+..... | .....
+..... | .....
+..... | .....
+
+step=3, rand=2, actions=&lt;ChangeDir(West()), Step&gt;
+Want  | Got ✓
+-------------
+...O. | ...O.
+A.&lt;O. | A.&lt;O.
+..... | .....
+..... | .....
+..... | .....
+
+step=4, rand=2, actions=&lt;Step&gt;
+Want  | Got ✓
+-------------
+..... | .....
+A&lt;OO. | A&lt;OO.
+..... | .....
+..... | .....
+..... | .....
+
+step=5, rand=4, actions=&lt;Step&gt;
+Want  | Got ✓
+-------------
+....A | ....A
+&lt;OO.. | &lt;OO..
+..... | .....
+..... | .....
+..... | .....
+
+step=6, rand=4, actions=&lt;Step&gt;
+Want  | Got ✓
+-------------
+....A | ....A
+OOO.&lt; | OOO.&lt;
+..... | .....
+..... | .....
+..... | .....
+
+step=7, rand=4, actions=&lt;Step&gt;
+Want  | Got ✓
+-------------
+....A | ....A
+OOO&lt;O | OOO&lt;O
+..... | .....
+..... | .....
+..... | .....
+
+step=8, rand=4, actions=&lt;ChangeDir(North()), Step&gt;
+Want  | Got ✓
+-------------
+...^A | ...^A
+OOOOO | OOOOO
+..... | .....
+..... | .....
+..... | .....
+
+step=9, rand=2, actions=&lt;ChangeDir(East()), Step&gt;
+Want  | Got ✓
+-------------
+..AO&gt; | ..AO&gt;
+OO.OO | OO.OO
+..... | .....
+..... | .....
+..... | .....
+
+step=10, rand=2, actions=&lt;Step&gt;
+Want  | Got ✓
+-------------
+&gt;.AOO | &gt;.AOO
+OO.OO | OO.OO
+..... | .....
+..... | .....
+..... | .....
+
+step=11, rand=2, actions=&lt;Step&gt;
+Want  | Got ✓
+-------------
+O&gt;AOO | O&gt;AOO
+OO.OO | OO.OO
+..... | .....
+..... | .....
+..... | .....
+
+step=12, rand=4, actions=&lt;Step&gt;
+Want  | Got ✓
+-------------
+OO&gt;OO | OO&gt;OO
+OO.OO | OO.OO
+...A. | ...A.
+..... | .....
+..... | .....
+
+step=13, rand=4, actions=&lt;Step&gt;
+Want              | Got ✓            
+-------------------------------------
+GameOverDisplay() | GameOverDisplay()
+
+step=14, rand=4, actions=&lt;Step&gt;
+Want              | Got ✓            
+-------------------------------------
+GameOverDisplay() | GameOverDisplay()
+
+step=15, rand=4, actions=&lt;ReverseGame(true), Step&gt;
+Want  | Got ✓
+-------------
+OO&gt;OO | OO&gt;OO
+OO.OO | OO.OO
+...A. | ...A.
+..... | .....
+..... | .....
+
+step=16, rand=4, actions=&lt;Step&gt;
+Want  | Got ✓
+-------------
+O&gt;AOO | O&gt;AOO
+OO.OO | OO.OO
+..... | .....
+..... | .....
+..... | .....
+
+step=17, rand=4, actions=&lt;ReverseGame(false), Step&gt;
+Want  | Got ✓
+-------------
+OO&gt;OO | OO&gt;OO
+OO.OO | OO.OO
+...A. | ...A.
+..... | .....
+..... | .....
+
+step=18, rand=4, actions=&lt;ChangeDir(South()), Step&gt;
+Want  | Got ✓
+-------------
+OOOOO | OOOOO
+OOvOO | OOvOO
+...A. | ...A.
+..... | .....
+..... | .....
+
+step=19, rand=4, actions=&lt;Step&gt;
+Want  | Got ✓
+-------------
+OOOOO | OOOOO
+OOOOO | OOOOO
+..vA. | ..vA.
+..... | .....
+..... | .....
+
+step=20, rand=2, actions=&lt;ChangeDir(East()), Step&gt;
+Want  | Got ✓
+-------------
+OOOOO | OOOOO
+OOOOO | OOOOO
+..O&gt;A | ..O&gt;A
+..... | .....
+..... | .....
+
+step=21, rand=4, actions=&lt;Step&gt;
+Want  | Got ✓
+-------------
+OOOOO | OOOOO
+OOOOO | OOOOO
+..OO&gt; | ..OO&gt;
+..A.. | ..A..
+..... | .....
+
+step=22, rand=4, actions=&lt;Step&gt;
+Want  | Got ✓
+-------------
+OOOOO | OOOOO
+OOOOO | OOOOO
+&gt;.OOO | &gt;.OOO
+..A.. | ..A..
+..... | .....
+
+step=23, rand=4, actions=&lt;Step&gt;
+Want  | Got ✓
+-------------
+OOOOO | OOOOO
+OOOOO | OOOOO
+O&gt;OOO | O&gt;OOO
+..A.. | ..A..
+..... | .....
+
+step=24, rand=4, actions=&lt;ChangeDir(South()), ChangeDir(East()), Step&gt;
+Want              | Got ✗
+-------------------------
+GameOverDisplay() | OOOOO
+                  | OOOOO
+                  | OOOOO
+                  | .vA..
+                  | .....
+
+step=25, rand=4, actions=&lt;Step&gt;
+Want              | Got ✗
+-------------------------
+GameOverDisplay() | OOOOO
+                  | OOOOO
+                  | OOOOO
+                  | .OA..
+                  | .v...
+
+step=26, rand=4, actions=&lt;ReverseGame(true), Step&gt;
+Want  | Got ✗
+-------------
+OOOOO | OOOOO
+OOOOO | OOOOO
+O&gt;OOO | OOOOO
+..A.. | .vA..
+..... | .....
+
+step=27, rand=4, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+OOOOO | OOOOO
+OOOOO | OOOOO
+&gt;.OOO | O&gt;OOO
+..A.. | ..A..
+..... | .....
+
+step=28, rand=4, actions=&lt;ReverseGame(false), Step&gt;
+Want  | Got ✗            
+-------------------------
+OOOOO | GameOverDisplay()
+OOOOO |                  
+O&gt;OOO |                  
+..A.. |                  
+..... |                  
+
+step=29, rand=4, actions=&lt;ChangeDir(South()), Step&gt;
+Want  | Got ✗            
+-------------------------
+OOOOO | GameOverDisplay()
+OOOOO |                  
+OOOOO |                  
+.vA.. |                  
+..... |                  
+
+step=30, rand=2, actions=&lt;ChangeDir(East()), Step&gt;
+Want  | Got ✗            
+-------------------------
+OOOOO | GameOverDisplay()
+OOOOO |                  
+OOOOO |                  
+.O&gt;.A |                  
+..... |                  
+
+step=31, rand=2, actions=&lt;Step&gt;
+Want  | Got ✗            
+-------------------------
+OOOOO | GameOverDisplay()
+OOOOO |                  
+OOOOO |                  
+.OO&gt;A |                  
+..... |                  
+
+step=32, rand=4, actions=&lt;Step&gt;
+Want  | Got ✗            
+-------------------------
+OOOOO | GameOverDisplay()
+OOOOO |                  
+OOOOO |                  
+.OOO&gt; |                  
+...A. |                  
+
+step=33, rand=4, actions=&lt;Step&gt;
+Want  | Got ✗            
+-------------------------
+OOOOO | GameOverDisplay()
+OOOOO |                  
+OOOOO |                  
+&gt;OOOO |                  
+...A. |                  
+
+step=34, rand=4, actions=&lt;ChangeDir(South()), Step&gt;
+Want  | Got ✗            
+-------------------------
+OOOOO | GameOverDisplay()
+OOOOO |                  
+OOOOO |                  
+OOOOO |                  
+v..A. |                  
+
+step=35, rand=4, actions=&lt;ChangeDir(East()), Step&gt;
+Want  | Got ✗            
+-------------------------
+OOOOO | GameOverDisplay()
+OOOOO |                  
+OOOOO |                  
+OOOOO |                  
+O&gt;.A. |                  
+
+step=36, rand=4, actions=&lt;Step&gt;
+Want  | Got ✗            
+-------------------------
+OOOOO | GameOverDisplay()
+OOOOO |                  
+OOOOO |                  
+OOOOO |                  
+OO&gt;A. |                  
+
+step=37, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗            
+-------------------------
+OOOOO | GameOverDisplay()
+OOOOO |                  
+OOOOO |                  
+OOOOO |                  
+OOO&gt;A |                  
+
+step=38, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗            
+-------------------------
+OOOOO | GameOverDisplay()
+OOOOO |                  
+OOOOO |                  
+OOOOO |                  
+OOOO&gt; |                  
+
+step=39, rand=0, actions=&lt;Step&gt;
+Want              | Got ✓            
+-------------------------------------
+GameOverDisplay() | GameOverDisplay()
+
+step=40, rand=0, actions=&lt;Step&gt;
+Want              | Got ✓            
+-------------------------------------
+GameOverDisplay() | GameOverDisplay()
+
+step=41, rand=0, actions=&lt;Step&gt;
+Want              | Got ✓            
+-------------------------------------
+GameOverDisplay() | GameOverDisplay()
+
+step=42, rand=0, actions=&lt;ReverseGame(true), Step&gt;
+Want  | Got ✗
+-------------
+OOOOO | OOOOO
+OOOOO | OOOOO
+OOOOO | O&gt;OOO
+OOOOO | ..A..
+OOOO&gt; | .....
+
+step=43, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+OOOOO | OOOOO
+OOOOO | OOOOO
+OOOOO | &gt;.OOO
+OOOOO | ..A..
+OOO&gt;A | .....
+
+step=44, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+OOOOO | OOOOO
+OOOOO | OOOOO
+OOOOO | ..OO&gt;
+OOOOO | ..A..
+OO&gt;A. | .....
+
+step=45, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+OOOOO | OOOOO
+OOOOO | OOOOO
+OOOOO | ..O&gt;A
+OOOOO | .....
+O&gt;.A. | .....
+
+step=46, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+OOOOO | OOOOO
+OOOOO | OOOOO
+OOOOO | ..vA.
+OOOOO | .....
+v..A. | .....
+
+step=47, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+OOOOO | OOOOO
+OOOOO | OOvOO
+OOOOO | ...A.
+&gt;OOOO | .....
+...A. | .....
+
+step=48, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+OOOOO | OO&gt;OO
+OOOOO | OO.OO
+OOOOO | ...A.
+.OOO&gt; | .....
+...A. | .....
+
+step=49, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+OOOOO | O&gt;AOO
+OOOOO | OO.OO
+OOOOO | .....
+.OO&gt;A | .....
+..... | .....
+
+step=50, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+OOOOO | &gt;.AOO
+OOOOO | OO.OO
+OOOOO | .....
+.O&gt;.A | .....
+..... | .....
+
+step=51, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+OOOOO | ..AO&gt;
+OOOOO | OO.OO
+OOOOO | .....
+.vA.. | .....
+..... | .....
+
+step=52, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+OOOOO | ...^A
+OOOOO | OOOOO
+O&gt;OOO | .....
+..A.. | .....
+..... | .....
+
+step=53, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+OOOOO | ....A
+OOOOO | OOO&lt;O
+&gt;.OOO | .....
+..A.. | .....
+..... | .....
+
+step=54, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+OOOOO | ....A
+OOOOO | OOO.&lt;
+..OO&gt; | .....
+..A.. | .....
+..... | .....
+
+step=55, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+OOOOO | ....A
+OOOOO | &lt;OO..
+..O&gt;A | .....
+..... | .....
+..... | .....
+
+step=56, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+OOOOO | .....
+OOOOO | A&lt;OO.
+..vA. | .....
+..... | .....
+..... | .....
+
+step=57, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+OOOOO | ...O.
+OOvOO | A.&lt;O.
+...A. | .....
+..... | .....
+..... | .....
+
+step=58, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+OO&gt;OO | ..OO.
+OO.OO | A..v.
+...A. | .....
+..... | .....
+..... | .....
+
+step=59, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+O&gt;AOO | .OO&gt;.
+OO.OO | A....
+..... | .....
+..... | .....
+..... | .....
+
+step=60, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+&gt;.AOO | OO&gt;..
+OO.OO | A....
+..... | .....
+..... | .....
+..... | .....
+
+step=61, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+..AO&gt; | OO&gt;..
+OO.OO | A....
+..... | .....
+..... | .....
+..... | .....
+
+step=62, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+...^A | OO&gt;..
+OOOOO | A....
+..... | .....
+..... | .....
+..... | .....
+
+step=63, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+....A | OO&gt;..
+OOO&lt;O | A....
+..... | .....
+..... | .....
+..... | .....
+
+step=64, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+....A | OO&gt;..
+OOO.&lt; | A....
+..... | .....
+..... | .....
+..... | .....
+
+step=65, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+....A | OO&gt;..
+&lt;OO.. | A....
+..... | .....
+..... | .....
+..... | .....
+
+step=66, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+..... | OO&gt;..
+A&lt;OO. | A....
+..... | .....
+..... | .....
+..... | .....
+
+step=67, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+...O. | OO&gt;..
+A.&lt;O. | A....
+..... | .....
+..... | .....
+..... | .....
+
+step=68, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+..OO. | OO&gt;..
+A..v. | A....
+..... | .....
+..... | .....
+..... | .....
+
+step=69, rand=0, actions=&lt;Step&gt;
+Want  | Got ✗
+-------------
+.OO&gt;. | OO&gt;..
+A.... | A....
+..... | .....
+..... | .....
+..... | .....
+
+step=70, rand=0, actions=&lt;Step&gt;
+Want  | Got ✓
+-------------
+OO&gt;.. | OO&gt;..
+A.... | A....
+..... | .....
+..... | .....
+..... | .....
+
+step=71, rand=0, actions=&lt;Step&gt;
+Want  | Got ✓
+-------------
+OO&gt;.. | OO&gt;..
+A.... | A....
+..... | .....
+..... | .....
+..... | .....
+
+step=72, rand=0, actions=&lt;ReverseGame(false), Step&gt;
+Want  | Got ✓
+-------------
+.OO&gt;. | .OO&gt;.
+A.... | A....
+..... | .....
+..... | .....
+..... | .....
+
+step=73, rand=0, actions=&lt;ChangeDir(South()), Step&gt;
+Want  | Got ✓
+-------------
+..OO. | ..OO.
+A..v. | A..v.
+..... | .....
+..... | .....
+..... | .....
+
+step=74, rand=0, actions=&lt;ChangeDir(West()), Step&gt;
+Want  | Got ✓
+-------------
+...O. | ...O.
+A.&lt;O. | A.&lt;O.
+..... | .....
+..... | .....
+..... | .....
+
+step=75, rand=0, actions=&lt;Step&gt;
+Want  | Got ✓
+-------------
+..... | .....
+A&lt;OO. | A&lt;OO.
+..... | .....
+..... | .....
+..... | .....
+
+step=76, rand=4, actions=&lt;Step&gt;
+Want  | Got ✓
+-------------
+....A | ....A
+&lt;OO.. | &lt;OO..
+..... | .....
+..... | .....
+..... | .....
+
+step=77, rand=4, actions=&lt;ChangeDir(South()), Step&gt;
+Want  | Got ✓
+-------------
+....A | ....A
+OOO.. | OOO..
+v.... | v....
+..... | .....
+..... | .....
+
+step=78, rand=4, actions=&lt;ChangeDir(East()), Step&gt;
+Want  | Got ✓
+-------------
+....A | ....A
+OOO.. | OOO..
+O&gt;... | O&gt;...
+..... | .....
+..... | .....
+
+step=79, rand=4, actions=&lt;Step&gt;
+Want  | Got ✓
+-------------
+....A | ....A
+OOO.. | OOO..
+OO&gt;.. | OO&gt;..
+..... | .....
+..... | .....
+
+step=80, rand=4, actions=&lt;Step&gt;
+Want  | Got ✓
+-------------
+....A | ....A
+OO... | OO...
+OOO&gt;. | OOO&gt;.
+..... | .....
+..... | .....
+
+
+	at app//org.scalatest.Assertions.newAssertionFailedException(Assertions.scala:530)
+	at app//org.scalatest.Assertions.newAssertionFailedException$(Assertions.scala:529)
+	at app//org.scalatest.FunSuite.newAssertionFailedException(FunSuite.scala:1560)
+	at app//org.scalatest.Assertions$AssertionsHelper.macroAssert(Assertions.scala:503)
+	at app//generic.GameTestSuite.checkGame(GameTestSuite.scala:298)
+	at app//snake.SnakeTestSuiteBase.checkGame(SnakeTestSuiteBase.scala:102)
+	at app//snake.reverse.ReverseTests.$anonfun$new$6(ReverseTests.scala:227)
+	at app//scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)
+	at app//infrastructure.TestBase.$anonfun$test$1(TestBase.scala:36)
+	at app//org.scalatest.OutcomeOf.outcomeOf(OutcomeOf.scala:85)
+	at app//org.scalatest.OutcomeOf.outcomeOf$(OutcomeOf.scala:83)
+	at app//org.scalatest.OutcomeOf$.outcomeOf(OutcomeOf.scala:104)
+	at app//org.scalatest.Transformer.apply(Transformer.scala:22)
+	at app//org.scalatest.Transformer.apply(Transformer.scala:20)
+	at app//org.scalatest.FunSuiteLike$$anon$1.apply(FunSuiteLike.scala:186)
+	at app//org.scalatest.TestSuite.withFixture(TestSuite.scala:196)
+	at app//org.scalatest.TestSuite.withFixture$(TestSuite.scala:195)
+	at app//infrastructure.TestBase.org$scalatest$concurrent$TimeLimitedTests$$super$withFixture(TestBase.scala:9)
+	at app//org.scalatest.concurrent.TimeLimitedTests.$anonfun$withFixture$3(TimeLimitedTests.scala:154)
+	at app//org.scalatest.enablers.Timed$$anon$1.timeoutAfter(Timed.scala:127)
+	at app//org.scalatest.concurrent.TimeLimits.failAfterImpl(TimeLimits.scala:239)
+	at app//org.scalatest.concurrent.TimeLimits.failAfterImpl$(TimeLimits.scala:233)
+	at app//org.scalatest.concurrent.TimeLimits$.failAfterImpl(TimeLimits.scala:305)
+	at app//org.scalatest.concurrent.TimeLimitedTests.withFixture(TimeLimitedTests.scala:153)
+	at app//org.scalatest.concurrent.TimeLimitedTests.withFixture$(TimeLimitedTests.scala:150)
+	at app//infrastructure.TestBase.withFixture(TestBase.scala:9)
+	at app//org.scalatest.FunSuiteLike.invokeWithFixture$1(FunSuiteLike.scala:184)
+	at app//org.scalatest.FunSuiteLike.$anonfun$runTest$1(FunSuiteLike.scala:196)
+	at app//org.scalatest.SuperEngine.runTestImpl(Engine.scala:286)
+	at app//org.scalatest.FunSuiteLike.runTest(FunSuiteLike.scala:196)
+	at app//org.scalatest.FunSuiteLike.runTest$(FunSuiteLike.scala:178)
+	at app//org.scalatest.FunSuite.runTest(FunSuite.scala:1560)
+	at app//org.scalatest.FunSuiteLike.$anonfun$runTests$1(FunSuiteLike.scala:229)
+	at app//org.scalatest.SuperEngine.$anonfun$runTestsInBranch$1(Engine.scala:393)
+	at app//scala.collection.immutable.List.foreach(List.scala:334)
+	at app//org.scalatest.SuperEngine.traverseSubNodes$1(Engine.scala:381)
+	at app//org.scalatest.SuperEngine.runTestsInBranch(Engine.scala:376)
+	at app//org.scalatest.SuperEngine.runTestsImpl(Engine.scala:458)
+	at app//org.scalatest.FunSuiteLike.runTests(FunSuiteLike.scala:229)
+	at app//org.scalatest.FunSuiteLike.runTests$(FunSuiteLike.scala:228)
+	at app//org.scalatest.FunSuite.runTests(FunSuite.scala:1560)
+	at app//org.scalatest.Suite.run(Suite.scala:1124)
+	at app//org.scalatest.Suite.run$(Suite.scala:1106)
+	at app//org.scalatest.FunSuite.org$scalatest$FunSuiteLike$$super$run(FunSuite.scala:1560)
+	at app//org.scalatest.FunSuiteLike.$anonfun$run$1(FunSuiteLike.scala:233)
+	at app//org.scalatest.SuperEngine.runImpl(Engine.scala:518)
+	at app//org.scalatest.FunSuiteLike.run(FunSuiteLike.scala:233)
+	at app//org.scalatest.FunSuiteLike.run$(FunSuiteLike.scala:232)
+	at app//infrastructure.TestBase.run(TestBase.scala:26)
+	at app//org.scalatest.Suite.callExecuteOnSuite$1(Suite.scala:1187)
+	at app//org.scalatest.Suite.$anonfun$runNestedSuites$1(Suite.scala:1234)
+	at app//scala.collection.ArrayOps$.foreach$extension(ArrayOps.scala:1324)
+	at app//org.scalatest.Suite.runNestedSuites(Suite.scala:1232)
+	at app//org.scalatest.Suite.runNestedSuites$(Suite.scala:1166)
+	at app//org.scalatest.Suites.runNestedSuites(Suites.scala:56)
+	at app//org.scalatest.Suite.run(Suite.scala:1121)
+	at app//org.scalatest.Suite.run$(Suite.scala:1106)
+	at app//snake.SnakeTestSuite.runDirect(SnakeTestSuite.scala:24)
+	at app//snake.SnakeTestSuite.run(SnakeTestSuite.scala:16)
+	at app//org.scalatestplus.junit.JUnitRunner.run(JUnitRunner.scala:99)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.runTestClass(JUnitTestClassExecutor.java:112)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:58)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:40)
+	at org.gradle.api.internal.tasks.testing.junit.AbstractJUnitTestClassProcessor.processTestClass(AbstractJUnitTestClassProcessor.java:54)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:53)
+	at java.base@21.0.8/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base@21.0.8/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:92)
+	at jdk.proxy1/jdk.proxy1.$Proxy4.processTestClass(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$2.run(TestWorker.java:183)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:132)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:121)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
+	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
